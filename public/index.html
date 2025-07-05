@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Feedback</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Student Feedback Form</h1>
+    <p class="subtext">We value your opinion! Help us improve.</p>
+    <form id="feedbackForm">
+      <input type="text" name="name" placeholder="👤 Your Name" required />
+      <input type="email" name="email" placeholder="📧 Your Email" required />
+      <input type="text" name="course" placeholder="📚 Course Name" required />
+      <textarea name="feedback" placeholder="💬 Write your feedback here..." required></textarea>
+      <button type="submit">📨 Submit Feedback</button>
+    </form>
+    <p id="responseMsg"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
