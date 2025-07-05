@@ -1,3 +1,5 @@
+require('dotenv').config(); // ✅ Top of the file
+
 const express = require('express');
 const mongoose = require('mongoose');
 const feedbackRoutes = require('./routes/feedback');
@@ -7,10 +9,10 @@ const app = express();
 app.use(express.json());
 
 // Connect to MongoDB Atlas
-require('dotenv').config(); // make sure this is at the top
-mongoose.connect(process.env.MONGODB_URI)
-
-
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 .then(() => console.log('✅ Connected to MongoDB Atlas'))
 .catch((err) => console.error('❌ MongoDB Atlas connection error:', err));
 
