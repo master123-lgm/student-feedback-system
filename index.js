@@ -7,10 +7,10 @@ const app = express();
 app.use(express.json());
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://brianmringo2:YR6v18SWxEpVOsmB@cluster0.qv9dizu.mongodb.net/feedbackDB?retryWrites=true&w=majority&appName=Cluster0', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+require('dotenv').config(); // make sure this is at the top
+mongoose.connect(process.env.MONGODB_URI)
+
+
 .then(() => console.log('✅ Connected to MongoDB Atlas'))
 .catch((err) => console.error('❌ MongoDB Atlas connection error:', err));
 
