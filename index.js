@@ -1,19 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const feedbackRoutes = require('./routes/feedback');
+const path = require('path');
 
 const app = express();
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1:27017/feedbackDB', {
+// Connect to MongoDB Atlas
+mongoose.connect('mongodb+srv://brianmringo2:YR6v18SWxEpVOsmB@cluster0.qv9dizu.mongodb.net/feedbackDB?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log('✅ Connected to MongoDB'))
-.catch((err) => console.error('❌ MongoDB connection error:', err));
+.then(() => console.log('✅ Connected to MongoDB Atlas'))
+.catch((err) => console.error('❌ MongoDB Atlas connection error:', err));
 
-const path = require('path');
+// Serve static files (frontend)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 // Start the server
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
