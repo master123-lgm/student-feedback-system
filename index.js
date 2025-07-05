@@ -9,12 +9,9 @@ const app = express();
 app.use(express.json());
 
 // Connect to MongoDB Atlas
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('✅ Connected to MongoDB Atlas'))
-.catch((err) => console.error('❌ MongoDB Atlas connection error:', err));
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('✅ Connected to MongoDB Atlas'))
+  .catch((err) => console.error('❌ MongoDB Atlas connection error:', err));
 
 // Serve static files (frontend)
 app.use(express.static(path.join(__dirname, 'public')));
