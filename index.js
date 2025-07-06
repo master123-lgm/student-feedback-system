@@ -18,6 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/api/feedback', feedbackRoutes);
+const adminRoutes = require('./routes/admin'); // ✅ Added
+app.use('/api/admin', adminRoutes);            // ✅ Added
 
 // Root route
 app.get('/', (req, res) => {
