@@ -43,5 +43,16 @@ router.get('/', async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 });
+// GET /api/feedback - get all feedback
+router.get('/', async (req, res) => {
+  try {
+    const feedbackList = await Feedback.find().sort({ createdAt: -1 });
+    res.json(feedbackList);
+  } catch (err) {
+    console.error('Error fetching feedback:', err);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
 
 module.exports = router;
