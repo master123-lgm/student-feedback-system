@@ -1,12 +1,29 @@
 const mongoose = require('mongoose');
 
 const feedbackSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  course: String,
-  message: String
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    lowercase: true,
+    trim: true
+  },
+  course: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  message: {
+    type: String,
+    required: true,
+    trim: true
+  }
 }, {
-  timestamps: true // ✅ Adds createdAt and updatedAt fields
+  timestamps: true // Automatically adds createdAt and updatedAt fields
 });
 
 const Feedback = mongoose.model('Feedback', feedbackSchema);

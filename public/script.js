@@ -6,15 +6,27 @@ document.getElementById("feedbackForm").addEventListener("submit", async functio
   const course = document.querySelector("input[name='course']").value;
   const feedback = document.querySelector("textarea[name='feedback']").value;
 
- const res = await fetch("http://localhost:5000/api/feedback", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ name, email, course, feedback }),
-});
+  try {
+    const res = await fetch("/api/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, course, feedback }),
+    });
 
-
-  const data = await res.json();
-  document.getElementById("responseMsg").textContent = data.message;
+    const data = await res.json();
+    const msg = document.getElementById("responseMsg");
+    if (res.ok) {
+      msg.textContent = "✅ " + data.message;
+      msg.style.color = "green";
+    } else {
+      msg.textContent = "❌ " + data.message;
+      msg.style.color = "red";
+    }
+  } catch (error) {
+    const msg = document.getElementById("responseMsg");
+    msg.textContent = "❌ Failed to submit feedback.";
+    msg.style.color = "red";
+  }
 });
