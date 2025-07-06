@@ -5,8 +5,9 @@ const feedbackSchema = new mongoose.Schema({
   email: String,
   course: String,
   message: String
-}, { timestamps: true }); // Adds createdAt and updatedAt
-
+}, {
+  timestamps: true // ✅ Adds createdAt and updatedAt fields
 });
 
-module.exports = mongoose.model('Feedback', feedbackSchema);
+const Feedback = mongoose.model('Feedback', feedbackSchema);
+module.exports = Feedback;
